@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.recheck.mapper.PeopleMapper">
+    <select id="getPeopleByUserName" resultType="com.recheck.entity.People">
+        select id , username , password from people where username = #{username}
+    </select>
+
+    <select id="selectAllRolesByUserId" resultType="String">
+        select r.name from t_role_user u, t_role r
+        where r.id = u.rid and u.uid = #{userId}
+    </select>
+
+    <select id="selectPermissionsByUserId" resultType="String">
+        select permission from t_role_user u, t_role r , t_role_menu rm ,t_menu m
+        where r.id = u.rid and rm.mid = m.id and u.rid = rm.rid and u.uid = #{userId}
+    </select>
+
+    <insert id="addPeople" parameterType="com.recheck.entity.People">
+        insert into people values (#{username},#{password})
+    </insert>
+</mapper>
