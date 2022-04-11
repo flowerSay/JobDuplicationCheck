@@ -17,6 +17,6 @@
     </select>
 
     <insert id="addPeople" parameterType="com.recheck.entity.People">
-        insert into people values (#{username},#{password})
+        insert into people values (null,#{username},#{password})
     </insert>
 </mapper>
